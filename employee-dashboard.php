@@ -343,7 +343,8 @@
 									<img alt="" src="/epn/assets/img/utilisateur/<?php echo $r_user['image_ut']; ?>">
 								</div>
 								<div class="welcome-det">
-									<h3>Bienvenue, <?php echo htmlentities(ucfirst($_SESSION['userlogin']))." [".$_SESSION['departement']."]";?></h3>
+									<?php if ($_SESSION["role"] !== $config["ROLES"][0]){ $affiche_departement = "[".$_SESSION['departement']."]";} else {$affiche_departement = " ";} ?>
+									<h3>Bienvenue, <?php echo htmlentities(ucfirst($_SESSION['userlogin']))." ".$affiche_departement;?></h3>
 									<p><?php echo $aujourdhuit; ?></p>
 								</div>
 							</div>
