@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 17 août 2022 à 10:16
+-- Généré le : lun. 10 oct. 2022 à 00:34
 -- Version du serveur : 10.4.24-MariaDB
 -- Version de PHP : 8.1.6
 
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `categorie` (
-  `id_categorie` int(11) NOT NULL,
+  `id_categorie` int(50) NOT NULL,
   `code_categorie` char(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -53,19 +53,20 @@ INSERT INTO `categorie` (`id_categorie`, `code_categorie`) VALUES
 --
 
 CREATE TABLE `departement` (
-  `id_departement` int(11) NOT NULL,
+  `id_departement` int(50) NOT NULL,
   `code_departement` varchar(20) NOT NULL,
-  `nom_departement` char(20) DEFAULT NULL
+  `nom_departement` char(50) DEFAULT NULL,
+  `id_chef_departement` int(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `departement`
 --
 
-INSERT INTO `departement` (`id_departement`, `code_departement`, `nom_departement`) VALUES
-(1, 'CCI', 'CCI(version long)'),
-(2, 'CDA', 'CDA(version long)'),
-(3, 'CEDP', 'CEDP(Version Long)');
+INSERT INTO `departement` (`id_departement`, `code_departement`, `nom_departement`, `id_chef_departement`) VALUES
+(11, 'CEDP', 'CEDP (Version Long)', 62),
+(12, 'Test Dep 2', 'Departement 2', 65),
+(13, 'Test Dep 1', 'Departement 1', 64);
 
 -- --------------------------------------------------------
 
@@ -74,19 +75,20 @@ INSERT INTO `departement` (`id_departement`, `code_departement`, `nom_departemen
 --
 
 CREATE TABLE `employee` (
-  `id_employee` int(11) NOT NULL,
-  `matricule` int(10) NOT NULL,
-  `nom` char(50) DEFAULT NULL,
-  `prenom` char(50) DEFAULT NULL,
+  `id_employee` int(50) NOT NULL,
+  `matricule` int(50) NOT NULL,
+  `nom` char(100) DEFAULT NULL,
+  `prenom` char(80) DEFAULT NULL,
   `date_naissance` date DEFAULT NULL,
-  `code_statut` char(20) DEFAULT NULL,
-  `code_categorie` char(20) DEFAULT NULL,
+  `id_statut` int(50) DEFAULT NULL,
+  `id_categorie` int(50) DEFAULT NULL,
   `d_contrat` date DEFAULT NULL,
-  `code_grade` char(20) DEFAULT NULL,
+  `id_grade` int(50) DEFAULT NULL,
   `avancement` date DEFAULT NULL,
   `f_contrat` date DEFAULT NULL,
   `d_retraite` date DEFAULT NULL,
-  `code_departement` char(20) DEFAULT NULL,
+  `id_departement` int(50) DEFAULT NULL,
+  `id_etablissement` int(50) DEFAULT NULL,
   `image` varchar(200) NOT NULL,
   `telephone` varchar(10) NOT NULL,
   `email` varchar(100) NOT NULL,
@@ -98,10 +100,37 @@ CREATE TABLE `employee` (
 -- Déchargement des données de la table `employee`
 --
 
-INSERT INTO `employee` (`id_employee`, `matricule`, `nom`, `prenom`, `date_naissance`, `code_statut`, `code_categorie`, `d_contrat`, `code_grade`, `avancement`, `f_contrat`, `d_retraite`, `code_departement`, `image`, `telephone`, `email`, `adresse`, `genre`) VALUES
-(20, 5409, 'TOVONIAIN', 'Schorio Ignace', '2002-11-04', 'EFA', 'CAT I', '2022-06-20', '2C2E', '2024-06-20', '2024-06-19', '2062-11-03', 'CEDP', 'avatar-12.jpg', '0345687490', 'schorioignace@gmail.com', 'Lot 378 Plle 134 Morafeno', 'Homme'),
-(47, 4378, 'Rasolomanana', 'Richard Arnaud', '1985-05-07', 'EFA', 'CAT II', '2004-03-19', '2C1E', '2006-03-19', '2006-03-18', '2045-05-06', 'CDA', 'avatar-09.jpg', '0343696754', 'Rich_arnaud@gmail.com', 'Betamanga', 'Homme'),
-(48, 4390, 'Rasoarivelo', 'Caren', '1997-07-14', 'EFA', 'CAT V', '2017-09-06', '2C2E', '2019-09-06', '2019-09-05', '2022-08-13', 'CDA', '29789997_1851125244921860_8184722219433170078_n.jpg', '0327859467', 'ras_caren@gmail.com', 'Mahavoky', 'Femme');
+INSERT INTO `employee` (`id_employee`, `matricule`, `nom`, `prenom`, `date_naissance`, `id_statut`, `id_categorie`, `d_contrat`, `id_grade`, `avancement`, `f_contrat`, `d_retraite`, `id_departement`, `id_etablissement`, `image`, `telephone`, `email`, `adresse`, `genre`) VALUES
+(62, 4242, 'TOVONIAINA', 'Schorio Ignace', '2002-11-04', 17, 1, '2022-06-13', 1, '0000-00-00', '0000-00-00', '2062-11-03', 11, 13, 'img_20220719_101446.jpg', '0324797899', 'schorioignace@gmail.com', 'Mahabibokely', 'Homme'),
+(63, 4312, 'Caren', 'Nancy', '2022-09-11', 16, 4, '2022-09-04', 7, '2024-09-04', '0000-00-00', '2082-09-10', 13, 11, 'avatar-03.jpg', '435634141', 'vrervew@DVFDVEW', 'frevgrvecev', 'Homme'),
+(64, 252525, 'dgwgw', 'rwrwrw', '2022-09-11', 15, 5, '2022-09-11', 7, '2022-08-11', '2024-09-10', '2082-09-10', 11, 13, '29789997_1851125244921860_8184722219433170078_n.jpg', '64747463', 'dvwwvw@gwgw', 'dvwvqw', 'Homme'),
+(65, 423525, 'test', 'test', '2022-08-31', 15, 5, '2022-09-08', 1, '2024-09-08', '2022-09-07', '2082-08-30', 12, 10, 'avatar-01.jpg', '453532525', 'dwvevw@dvw', 'fvwvw', 'Homme'),
+(66, 3532, 'TOVONIAINA', 'Arnaud Eudes', '2005-11-11', 15, 4, '2022-10-09', 1, '2024-10-09', '2024-10-08', '2065-11-10', 11, 19, 'avatar-18.jpg', '042398198', 'arnaud@gmail.com', 'dvsava', 'Homme');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `etablissement`
+--
+
+CREATE TABLE `etablissement` (
+  `id_etablissement` int(50) NOT NULL,
+  `code_etablissement` varchar(20) DEFAULT NULL,
+  `nom_etablissement` varchar(50) NOT NULL,
+  `type_etablissement` varchar(50) NOT NULL,
+  `id_departement` int(50) NOT NULL,
+  `id_chef_etablissement` int(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `etablissement`
+--
+
+INSERT INTO `etablissement` (`id_etablissement`, `code_etablissement`, `nom_etablissement`, `type_etablissement`, `id_departement`, `id_chef_etablissement`) VALUES
+(10, 'CSB', 'Centre de Santer et de Base', 'Santé', 11, 66),
+(11, 'CIR', 'Centre Informatique Regional', 'Informatique', 13, 62),
+(13, 'Test', 'test', 'dad', 11, 64),
+(19, 'CVSWDVW', 'DVWVQWV', 'DADVA', 11, 66);
 
 -- --------------------------------------------------------
 
@@ -110,7 +139,7 @@ INSERT INTO `employee` (`id_employee`, `matricule`, `nom`, `prenom`, `date_naiss
 --
 
 CREATE TABLE `grade` (
-  `id_grade` int(11) NOT NULL,
+  `id_grade` int(50) NOT NULL,
   `code_grade` char(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -126,13 +155,34 @@ INSERT INTO `grade` (`id_grade`, `code_grade`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `graphe_mois`
+--
+
+CREATE TABLE `graphe_mois` (
+  `id_chart` int(11) NOT NULL,
+  `code_departement` varchar(20) NOT NULL,
+  `nombre_r` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `graphe_mois`
+--
+
+INSERT INTO `graphe_mois` (`id_chart`, `code_departement`, `nombre_r`) VALUES
+(1, 'CCI', 63),
+(2, 'CDA', 47),
+(5, 'CEDP', 81);
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `statut`
 --
 
 CREATE TABLE `statut` (
-  `id_statut` int(11) NOT NULL,
+  `id_statut` int(50) NOT NULL,
   `code_statut` varchar(20) NOT NULL,
-  `nom_statut` char(20) DEFAULT NULL
+  `nom_statut` char(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -140,9 +190,9 @@ CREATE TABLE `statut` (
 --
 
 INSERT INTO `statut` (`id_statut`, `code_statut`, `nom_statut`) VALUES
-(15, 'ELD', 'ELD (version long)'),
+(15, 'ELD', 'Emplois Long Durée'),
 (16, 'FONCT', 'Fonctionnaire'),
-(17, 'EFA', 'EFA (version long)');
+(17, 'EFA', 'Emplois Fonct Assimilé');
 
 -- --------------------------------------------------------
 
@@ -151,18 +201,27 @@ INSERT INTO `statut` (`id_statut`, `code_statut`, `nom_statut`) VALUES
 --
 
 CREATE TABLE `utilisateur` (
-  `id` int(11) NOT NULL,
-  `UserName` varchar(200) NOT NULL,
-  `Email` varchar(100) NOT NULL,
-  `Password` varchar(200) NOT NULL
+  `id_ut` int(11) NOT NULL,
+  `nom_ut` varchar(100) NOT NULL,
+  `prenom_ut` varchar(80) NOT NULL,
+  `image_ut` varchar(80) NOT NULL,
+  `role_ut` varchar(10) NOT NULL,
+  `departement_ut` varchar(20) NOT NULL,
+  `username_ut` varchar(200) NOT NULL,
+  `email_ut` varchar(100) NOT NULL,
+  `password_ut` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `utilisateur`
 --
 
-INSERT INTO `utilisateur` (`id`, `UserName`, `Email`, `Password`) VALUES
-(9, 'admin', 'admin@gmail.com', 'admin');
+INSERT INTO `utilisateur` (`id_ut`, `nom_ut`, `prenom_ut`, `image_ut`, `role_ut`, `departement_ut`, `username_ut`, `email_ut`, `password_ut`) VALUES
+(9, 'super', 'administrateur', 'img_20220719_102155.jpg', 'admin', '', 'admin', 'admin@gmail.com', 'admin'),
+(18, 'TOVONIAINA', 'Schorio Ignace', 'img_20220719_101446.jpg', 'visiteur', 'CEDP', 'schorio', 'schorioignace@gmail.com', '64492032'),
+(19, 'test', 'test', 'avatar-03.jpg', 'visiteur', 'CEDP', 'test', 'test@test.t', 'test'),
+(20, 'Rakotobe', 'sitraka', 'avatar-18.jpg', 'visiteur', '', 'sitraka', 'sitraka@gmail.com', '64492032'),
+(21, 'araka', 'araka', 'avatar-05.jpg', 'admin', 'CDA', 'araka', 'arak@DVS', '   ');
 
 --
 -- Index pour les tables déchargées
@@ -188,10 +247,19 @@ ALTER TABLE `departement`
 ALTER TABLE `employee`
   ADD PRIMARY KEY (`id_employee`),
   ADD UNIQUE KEY `matricule` (`matricule`),
-  ADD UNIQUE KEY `nom_statut` (`code_statut`,`code_categorie`,`code_grade`,`code_departement`),
-  ADD KEY `code_grade` (`code_grade`),
-  ADD KEY `code_categorie` (`code_categorie`),
-  ADD KEY `code_departement` (`code_departement`);
+  ADD UNIQUE KEY `nom_statut` (`id_statut`,`id_categorie`,`id_grade`,`id_departement`),
+  ADD KEY `id_categorie` (`id_categorie`),
+  ADD KEY `id_departement` (`id_departement`),
+  ADD KEY `id_etablissement` (`id_etablissement`),
+  ADD KEY `id_grade` (`id_grade`);
+
+--
+-- Index pour la table `etablissement`
+--
+ALTER TABLE `etablissement`
+  ADD PRIMARY KEY (`id_etablissement`),
+  ADD UNIQUE KEY `code_etablissement` (`code_etablissement`),
+  ADD KEY `id_departement` (`id_departement`);
 
 --
 -- Index pour la table `grade`
@@ -199,6 +267,13 @@ ALTER TABLE `employee`
 ALTER TABLE `grade`
   ADD PRIMARY KEY (`id_grade`),
   ADD UNIQUE KEY `code_grade` (`code_grade`);
+
+--
+-- Index pour la table `graphe_mois`
+--
+ALTER TABLE `graphe_mois`
+  ADD PRIMARY KEY (`id_chart`),
+  ADD KEY `code_departement` (`code_departement`);
 
 --
 -- Index pour la table `statut`
@@ -211,8 +286,8 @@ ALTER TABLE `statut`
 -- Index pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `Email` (`Email`);
+  ADD PRIMARY KEY (`id_ut`),
+  ADD UNIQUE KEY `Email` (`email_ut`);
 
 --
 -- AUTO_INCREMENT pour les tables déchargées
@@ -222,37 +297,49 @@ ALTER TABLE `utilisateur`
 -- AUTO_INCREMENT pour la table `categorie`
 --
 ALTER TABLE `categorie`
-  MODIFY `id_categorie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_categorie` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT pour la table `departement`
 --
 ALTER TABLE `departement`
-  MODIFY `id_departement` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_departement` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT pour la table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `id_employee` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id_employee` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+
+--
+-- AUTO_INCREMENT pour la table `etablissement`
+--
+ALTER TABLE `etablissement`
+  MODIFY `id_etablissement` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT pour la table `grade`
 --
 ALTER TABLE `grade`
-  MODIFY `id_grade` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_grade` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT pour la table `graphe_mois`
+--
+ALTER TABLE `graphe_mois`
+  MODIFY `id_chart` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT pour la table `statut`
 --
 ALTER TABLE `statut`
-  MODIFY `id_statut` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_statut` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_ut` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- Contraintes pour les tables déchargées
@@ -262,10 +349,17 @@ ALTER TABLE `utilisateur`
 -- Contraintes pour la table `employee`
 --
 ALTER TABLE `employee`
-  ADD CONSTRAINT `employee_ibfk_4` FOREIGN KEY (`code_grade`) REFERENCES `grade` (`code_grade`),
-  ADD CONSTRAINT `employee_ibfk_5` FOREIGN KEY (`code_categorie`) REFERENCES `categorie` (`code_categorie`),
-  ADD CONSTRAINT `employee_ibfk_6` FOREIGN KEY (`code_departement`) REFERENCES `departement` (`code_departement`),
-  ADD CONSTRAINT `employee_ibfk_7` FOREIGN KEY (`code_statut`) REFERENCES `statut` (`code_statut`);
+  ADD CONSTRAINT `employee_ibfk_1` FOREIGN KEY (`id_categorie`) REFERENCES `categorie` (`id_categorie`),
+  ADD CONSTRAINT `employee_ibfk_2` FOREIGN KEY (`id_departement`) REFERENCES `departement` (`id_departement`),
+  ADD CONSTRAINT `employee_ibfk_3` FOREIGN KEY (`id_etablissement`) REFERENCES `etablissement` (`id_etablissement`),
+  ADD CONSTRAINT `employee_ibfk_4` FOREIGN KEY (`id_grade`) REFERENCES `grade` (`id_grade`),
+  ADD CONSTRAINT `employee_ibfk_5` FOREIGN KEY (`id_statut`) REFERENCES `statut` (`id_statut`);
+
+--
+-- Contraintes pour la table `etablissement`
+--
+ALTER TABLE `etablissement`
+  ADD CONSTRAINT `etablissement_ibfk_1` FOREIGN KEY (`id_departement`) REFERENCES `departement` (`id_departement`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -6,7 +6,7 @@
 		header('location:login.php');
 	}
 
-
+	// Obtenir la date du jour
 	$aujourdhuit = date('d M Y');
 	$now = date("Y-m-d");
 	$d = strtotime("+3 Days");

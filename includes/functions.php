@@ -185,6 +185,7 @@
 		$query_0->execute();
 		$result_0=$query_0->fetch(PDO::FETCH_ASSOC);
 
+		// Attribuer l'etablissement du chef au nouveau etablissement
 		$n_id_etablissement = $result_0['id_etablissement'];
 		$sql_1 = "UPDATE employee SET id_etablissement = '$n_id_etablissement' WHERE id_employee = '$id_chef_etablissement' ";
 
