@@ -59,6 +59,7 @@ CREATE TABLE `departement` (
   `id_chef_departement` int(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+<<<<<<< HEAD
 --
 -- Déchargement des données de la table `departement`
 --
@@ -68,6 +69,8 @@ INSERT INTO `departement` (`id_departement`, `code_departement`, `nom_departemen
 (12, 'Test Dep 2', 'Departement 2', 65),
 (13, 'Test Dep 1', 'Departement 1', 64);
 
+=======
+>>>>>>> 3eed723358b92de3636ed4c9bd442410ffce2223
 -- --------------------------------------------------------
 
 --
@@ -96,10 +99,13 @@ CREATE TABLE `employee` (
   `genre` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+
 --
--- Déchargement des données de la table `employee`
+-- Structure de la table `etablissement`
 --
 
+<<<<<<< HEAD
 INSERT INTO `employee` (`id_employee`, `matricule`, `nom`, `prenom`, `date_naissance`, `id_statut`, `id_categorie`, `d_contrat`, `id_grade`, `avancement`, `f_contrat`, `d_retraite`, `id_departement`, `id_etablissement`, `image`, `telephone`, `email`, `adresse`, `genre`) VALUES
 (62, 4242, 'TOVONIAINA', 'Schorio Ignace', '2002-11-04', 17, 1, '2022-06-13', 1, '0000-00-00', '0000-00-00', '2062-11-03', 11, 13, 'img_20220719_101446.jpg', '0324797899', 'schorioignace@gmail.com', 'Mahabibokely', 'Homme'),
 (63, 4312, 'Caren', 'Nancy', '2022-09-11', 16, 4, '2022-09-04', 7, '2024-09-04', '0000-00-00', '2082-09-10', 13, 11, 'avatar-03.jpg', '435634141', 'vrervew@DVFDVEW', 'frevgrvecev', 'Homme'),
@@ -113,6 +119,8 @@ INSERT INTO `employee` (`id_employee`, `matricule`, `nom`, `prenom`, `date_naiss
 -- Structure de la table `etablissement`
 --
 
+=======
+>>>>>>> 3eed723358b92de3636ed4c9bd442410ffce2223
 CREATE TABLE `etablissement` (
   `id_etablissement` int(50) NOT NULL,
   `code_etablissement` varchar(20) DEFAULT NULL,
@@ -122,6 +130,7 @@ CREATE TABLE `etablissement` (
   `id_chef_etablissement` int(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+<<<<<<< HEAD
 --
 -- Déchargement des données de la table `etablissement`
 --
@@ -131,6 +140,8 @@ INSERT INTO `etablissement` (`id_etablissement`, `code_etablissement`, `nom_etab
 (11, 'CIR', 'Centre Informatique Regional', 'Informatique', 13, 62),
 (13, 'Test', 'test', 'dad', 11, 64),
 (19, 'CVSWDVW', 'DVWVQWV', 'DADVA', 11, 66);
+=======
+>>>>>>> 3eed723358b92de3636ed4c9bd442410ffce2223
 
 -- --------------------------------------------------------
 
@@ -164,6 +175,7 @@ CREATE TABLE `graphe_mois` (
   `nombre_r` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+<<<<<<< HEAD
 --
 -- Déchargement des données de la table `graphe_mois`
 --
@@ -173,6 +185,8 @@ INSERT INTO `graphe_mois` (`id_chart`, `code_departement`, `nombre_r`) VALUES
 (2, 'CDA', 47),
 (5, 'CEDP', 81);
 
+=======
+>>>>>>> 3eed723358b92de3636ed4c9bd442410ffce2223
 -- --------------------------------------------------------
 
 --
@@ -218,10 +232,13 @@ CREATE TABLE `utilisateur` (
 
 INSERT INTO `utilisateur` (`id_ut`, `nom_ut`, `prenom_ut`, `image_ut`, `role_ut`, `departement_ut`, `username_ut`, `email_ut`, `password_ut`) VALUES
 (9, 'super', 'administrateur', 'img_20220719_102155.jpg', 'admin', '', 'admin', 'admin@gmail.com', 'admin'),
+<<<<<<< HEAD
 (18, 'TOVONIAINA', 'Schorio Ignace', 'img_20220719_101446.jpg', 'visiteur', 'CEDP', 'schorio', 'schorioignace@gmail.com', '64492032'),
 (19, 'test', 'test', 'avatar-03.jpg', 'visiteur', 'CEDP', 'test', 'test@test.t', 'test'),
 (20, 'Rakotobe', 'sitraka', 'avatar-18.jpg', 'visiteur', '', 'sitraka', 'sitraka@gmail.com', '64492032'),
 (21, 'araka', 'araka', 'avatar-05.jpg', 'admin', 'CDA', 'araka', 'arak@DVS', '   ');
+=======
+>>>>>>> 3eed723358b92de3636ed4c9bd442410ffce2223
 
 --
 -- Index pour les tables déchargées
